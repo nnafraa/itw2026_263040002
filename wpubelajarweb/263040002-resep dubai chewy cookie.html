@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resep Dubai Chewy Cookie</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Plus+Jakarta+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* ---------- Colors & fonts ---------- */
+        :root {
+            --choc: #2a1810;
+            --pist: #6f9a2e;
+            --pist-d: #46661a;
+            --gold: #d9a23f;
+            --salt: #fbfcf6;
+            --bg: #f1f4e6;
+            --serif: "Fraunces", Georgia, "Times New Roman", serif;
+            --sans: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+        }
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { margin: 0; background: var(--bg); color: var(--choc); font: 400 1.0625rem/1.7 var(--sans); }
+        h2 { font: 700 clamp(1.6rem, 4vw, 2.1rem)/1.15 var(--serif); margin: 0 0 1.2rem; letter-spacing: -.01em; }
+        h3 { font: 700 1.2rem/1.3 var(--serif); margin: 0 0 .8rem; }
+
+        /* ---------- Hero ---------- */
+        .hero { background: var(--choc); color: var(--salt); padding: clamp(2.5rem, 7vw, 5rem) 1.25rem; }
+        .hero-inner { max-width: 880px; margin: 0 auto; display: grid; grid-template-columns: 1fr auto; gap: 2rem; align-items: center; }
+        .hero h1 { font: 800 clamp(2.3rem, 7vw, 4.3rem)/1.03 var(--serif); letter-spacing: -.02em; margin: 0 0 1.1rem; }
+        .hero p { max-width: 46ch; margin: 0; color: #e8dccb; font-size: 1.1rem; }
+        .hero strong { color: var(--gold); }
+
+        /* Cookie drawn with CSS only: pistachio center, chocolate chips, sea salt */
+        .cookie {
+            width: clamp(140px, 26vw, 240px); aspect-ratio: 1; border-radius: 50%;
+            background:
+                radial-gradient(circle at 50% 50%, #a5c94a 0 9%, #6f9a2e 10% 15%, #3d2412 16% 17%, transparent 18%),
+                radial-gradient(ellipse 9% 6% at 24% 30%, #1f110a 0 90%, transparent),
+                radial-gradient(ellipse 8% 6% at 74% 26%, #1f110a 0 90%, transparent),
+                radial-gradient(ellipse 9% 6% at 80% 62%, #1f110a 0 90%, transparent),
+                radial-gradient(ellipse 8% 6% at 30% 76%, #1f110a 0 90%, transparent),
+                radial-gradient(ellipse 7% 5% at 56% 82%, #1f110a 0 90%, transparent),
+                radial-gradient(circle at 62% 38%, #fff 0 1.2%, transparent 1.6%),
+                radial-gradient(circle at 36% 58%, #fff 0 1.2%, transparent 1.6%),
+                radial-gradient(circle at 42% 34%, #e4ad63, #bb7b38 68%, #8c5626);
+            box-shadow: inset -12px -16px 26px rgba(0,0,0,.3), inset 8px 8px 16px rgba(255,225,170,.25), 0 26px 40px rgba(0,0,0,.5);
+            animation: land 1.1s cubic-bezier(.2,.8,.2,1) both;
+        }
+        @keyframes land { from { transform: translateY(-36px) rotate(-45deg) scale(.85); opacity: 0; } }
+
+        /* ---------- Layout ---------- */
+        main { max-width: 880px; margin: 0 auto; padding: 0 1.25rem; }
+        main > section { margin-top: clamp(2.5rem, 6vw, 4rem); }
+
+        /* ---------- Glossary ---------- */
+        .glossary dl { display: grid; grid-template-columns: repeat(2, 1fr); gap: .9rem; margin: 0; }
+        .glossary dl > div { background: #e7efcf; border-left: 5px solid var(--pist); border-radius: 4px 14px 14px 4px; padding: 1rem 1.15rem; }
+        .glossary dt { font: 700 1.15rem/1.3 var(--serif); color: var(--pist-d); margin: 0 0 .3rem; }
+        .glossary dd { margin: 0; font-size: .97rem; color: #4a3d33; }
+
+        /* ---------- Ingredients ---------- */
+        .ingredients { background: var(--salt); border-radius: 26px; padding: clamp(1.4rem, 4vw, 2.4rem); box-shadow: 0 16px 34px -22px rgba(42,24,16,.45); }
+        .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem 2.5rem; }
+        .ingredients h3 { color: var(--pist-d); }
+        .ingredients ul { list-style: none; margin: 0; padding: 0; }
+        .ingredients li { position: relative; padding: .55rem 0 .55rem 1.6rem; border-bottom: 1px dotted #c9d1aa; }
+        .ingredients li:last-child { border-bottom: 0; }
+        .ingredients li::before { content: ""; position: absolute; left: 0; top: 1.05rem; width: .7rem; height: .7rem; border-radius: 50%; background: var(--pist); }
+
+        /* ---------- Method (numbered because it is a sequence) ---------- */
+        .method h3 { color: var(--pist-d); margin: 2.2rem 0 1rem; }
+        .method ol { list-style: none; counter-reset: step; margin: 0 0 0 1rem; padding: 0; border-left: 2px dashed #b3c47f; }
+        .method li { counter-increment: step; position: relative; padding: 0 0 1.1rem 1.8rem; }
+        .method li:last-child { padding-bottom: 0; }
+        .method li::before {
+            content: counter(step); position: absolute; left: calc(-1rem - 1px); top: -.1rem;
+            width: 2rem; height: 2rem; border-radius: 50%; background: var(--choc); color: var(--gold);
+            font: 700 .95rem/2rem var(--serif); text-align: center;
+        }
+
+        /* ---------- Pro tips ---------- */
+        .tips { background: #27391b; color: #eef3df; border-radius: 26px; padding: clamp(1.4rem, 4vw, 2.4rem); }
+        .tips h2 { color: #fff; }
+        .tips ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.2rem; }
+        .tips li { max-width: 68ch; border-left: 4px solid var(--gold); padding: .15rem 0 .15rem 1rem; }
+        .tips strong { display: block; color: var(--gold); font: 700 1.05rem/1.4 var(--serif); margin-bottom: .1rem; }
+
+        /* ---------- Footer ---------- */
+        footer { max-width: 880px; margin: 0 auto; padding: 2.5rem 1.25rem 3rem; text-align: center; color: #6b5a4e; font-size: .95rem; }
+        footer p { margin: 0; }
+        footer a { color: var(--pist-d); overflow-wrap: anywhere; }
+        a:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; border-radius: 3px; }
+
+        /* ---------- Mobile & motion ---------- */
+        @media (max-width: 680px) {
+            .hero-inner, .cols, .glossary dl { grid-template-columns: 1fr; }
+            .cookie { order: -1; width: 150px; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .cookie { animation: none; }
+            html { scroll-behavior: auto; }
+        }
+    </style>
+</head>
+<body>
+    <header class="hero">
+        <div class="hero-inner">
+            <div>
+                <h1>Tutorial Membuat Dubai Chewy Cookie🧆</h1>
+                <p>
+                    Tren "<strong>Dubai Cookie</strong>" mengadaptasi viralnya cokelat Dubai yang berisi pistachio dan knafeh renyah,
+                    digabungkan dengan tekstur chewy dari chocolate chip cookie klasik
+                </p>
+            </div>
+            <div class="cookie" role="img" aria-label="Ilustrasi cookie dengan isian pistachio"></div>
+        </div>
+    </header>
+
+    <main>
+        <section class="glossary">
+            <h2>Kamus Istilah Dubai Chewy Cookie:</h2>
+            <dl>
+                <div>
+                    <dt>Knafeh / Kataifi:</dt>
+                    <dd>Adonan pastry khas Timur Tengah yang bentuknya seperti helaian benang halus (bihun). Ini kunci tekstur renyah di dalam cookie.</dd>
+                </div>
+                <div>
+                    <dt>Pistachio Paste/Cream:</dt>
+                    <dd>Selai atau krim yang terbuat dari kacang pistachio yang dihaluskan. Hindari perisa sintetik; gunakan selai pistachio asli untuk rasa autentik.</dd>
+                </div>
+                <div>
+                    <dt>Brown Butter:</dt>
+                    <dd>Mentega yang dilelehkan dan dipanaskan hingga padatan susunya terkaramelisasi menjadi kecokelatan. Aromanya sangat wangi seperti kacang (nutty).</dd>
+                </div>
+                <div>
+                    <dt>Chilling:</dt>
+                    <dd>Proses mengistirahatkan adonan di kulkas. Tujuannya memadatkan mentega agar cookie tidak meleber (flat) saat dipanggang.</dd>
+                </div>
+                <div>
+                    <dt>Tahini:</dt>
+                    <dd>Pasta wijen murni. Sering ditambahkan sedikit ke isian manis Timur Tengah untuk menyeimbangkan rasa legit.</dd>
+                </div>
+                <div>
+                    <dt>Carry-over Cooking:</dt>
+                    <dd>Proses di mana cookie masih terus matang dari sisa panas loyang meski sudah dikeluarkan dari oven.</dd>
+                </div>
+            </dl>
+        </section>
+
+        <section class="ingredients">
+            <h2>Bahan Bahan</h2>
+            <div class="cols">
+                <div>
+                    <h3>Bahan Isian (Pistachio Knafeh):</h3>
+                    <ul>
+                        <li>100 gram knafeh/kataifi pastry, potong atau cincang kasar</li>
+                        <li>1 sdm mentega (unsalted)</li>
+                        <li>150 gram selai pistachio (pistachio cream/spread)</li>
+                        <li>1 sdt tahini (opsional, untuk penyeimbang rasa)</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Bahan Adonan Chewy Cookie:</h3>
+                    <ul>
+                        <li>150 gram mentega tawar (unsalted butter)</li>
+                        <li>120 gram brown sugar (gula palem/gula aren bubuk)</li>
+                        <li>50 gram gula pasir</li>
+                        <li>1 butir telur utuh + 1 kuning telur (suhu ruang)</li>
+                        <li>1 sdt ekstrak vanila</li>
+                        <li>220 gram tepung terigu protein sedang</li>
+                        <li>1 sdm tepung maizena (kunci tekstur chewy)</li>
+                        <li>½ sdt baking soda (soda kue)</li>
+                        <li>½ sdt garam</li>
+                        <li>150 gram dark chocolate chips atau cokelat batang yang dicincang kasar</li>
+                        <li>Sea salt (garam laut) kasar untuk taburan di atasnya</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="method">
+            <h2>Cara Membuat</h2>
+
+            <h3>1. Siapkan Isian (Lakukan sehari sebelumnya atau minimal 2 jam sebelum)</h3>
+            <ol>
+                <li>Lelehkan 1 sdm mentega di wajan dengan api sedang-kecil. Masukkan knafeh cincang. Sangrai terus hingga warnanya kuning keemasan dan teksturnya renyah (sekitar 5-7 menit). Angkat dan biarkan agak dingin.</li>
+                <li>Campurkan knafeh renyah, selai pistachio, dan tahini dalam satu mangkuk. Aduk hingga rata.</li>
+                <li>Ambil sekitar 1 sendok makan isian, bulatkan, dan taruh di atas piring yang dilapisi kertas roti. Buat sekitar 10-12 bulatan.</li>
+                <li>Masukkan ke dalam freezer hingga benar-benar keras dan beku (minimal 1-2 jam). Isian wajib beku agar tidak bocor saat dipanggang.</li>
+            </ol>
+
+            <h3>2. Buat Adonan Cookie</h3>
+            <ol>
+                <li>Buat brown butter: Lelehkan 150g mentega di teflon dengan api sedang. Aduk perlahan sampai mentega berbusa, muncul serpihan cokelat di dasar teflon, dan baunya harum. Segera angkat dan tuang ke mangkuk tahan panas. Biarkan hangat kuku.</li>
+                <li>Masukkan brown sugar dan gula pasir ke dalam mentega cair. Aduk menggunakan whisk sampai rata.</li>
+                <li>Tambahkan telur utuh, kuning telur, dan vanila. Aduk cepat hingga adonan licin dan agak mengental.</li>
+                <li>Masukkan tepung terigu, maizena, baking soda, dan garam. Aduk menggunakan spatula (folding) hanya sampai tepung tidak terlihat. Jangan terlalu lama diaduk agar cookie tidak keras.</li>
+                <li>Masukkan potongan cokelat (chocolate chips). Aduk asal rata.</li>
+            </ol>
+
+            <h3>3. Pembentukan dan Pemanggangan</h3>
+            <ol>
+                <li>Ambil sekitar 1,5 hingga 2 sendok makan adonan cookie. Pipihkan di telapak tangan.</li>
+                <li>Ambil satu bulatan isian pistachio yang sudah beku dari freezer. Letakkan di tengah adonan yang dipipihkan.</li>
+                <li>Tutup adonan rapat-rapat hingga isian tertutup sempurna. Pastikan tidak ada celah agar isian tidak bocor saat dipanggang.</li>
+                <li>Simpan bulatan cookie yang sudah diisi ke dalam kulkas (chiller) selama 30 menit.</li>
+                <li>Panaskan oven di suhu 180°C.</li>
+                <li>Susun adonan di loyang yang sudah dialasi kertas roti. Beri jarak yang cukup karena cookie akan melebar.</li>
+                <li>Panggang selama 12–14 menit. Pinggirannya harus terlihat sudah set (kecokelatan), tapi bagian tengahnya masih terlihat pucat dan sangat empuk.</li>
+                <li>Keluarkan dari oven. Taburi dengan sea salt selagi hangat. Biarkan di atas loyang selama 10 menit (carry-over cooking berjalan di sini), lalu pindahkan ke rak pendingin.</li>
+            </ol>
+        </section>
+
+        <section class="tips">
+            <h2>Tips Pro</h2>
+            <ul>
+                <li><strong>Rahasia Isian Tidak Bocor:</strong> Adonan isian pistachio harus dalam keadaan membatu/beku dari freezer saat dibungkus adonan cookie. Jika isiannya lembek, selai akan meledak keluar saat dipanggang.</li>
+                <li><strong>Fungsi Ekstra Kuning Telur dan Maizena:</strong> Tambahan satu kuning telur memberikan lemak ekstra yang membuat cookie lebih fudgy. Tepung maizena berfungsi mengikat cairan dalam adonan sehingga cookie tetap lembut dan chewy berhari-hari, bukan renyah/keras.</li>
+                <li><strong>Jangan Overbake:</strong> Kesalahan terbesar membuat chewy cookie adalah menunggunya sampai keras di dalam oven. Jika Anda memanggangnya sampai bagian tengahnya mengeras di oven, hasil akhirnya akan menjadi biskuit batu saat sudah dingin.</li>
+                <li><strong>Bermain dengan Cokelat:</strong> Gunakan dark chocolate (minimal 50% kakao) ketimbang milk chocolate. Rasa manis dari selai pistachio sudah cukup kuat, sehingga pahitnya dark chocolate akan menyeimbangkan profil rasanya.</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>Sumber Referensi: <a href="https://jessiebakescakes.com/viral-dubai-chocolate-bar-pistachio-cookies/" target="_blank" rel="noopener">https://jessiebakescakes.com/viral-dubai-chocolate-bar-pistachio-cookies/</a></p>
+    </footer>
+</body>
+</html>
